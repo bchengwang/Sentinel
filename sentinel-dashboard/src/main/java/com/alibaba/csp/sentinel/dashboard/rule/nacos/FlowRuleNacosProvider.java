@@ -29,8 +29,8 @@ import java.util.List;
 @Component
 public class FlowRuleNacosProvider extends AbstractRuleNacosProvider<FlowRuleEntity> {
 
-    public FlowRuleNacosProvider(ConfigService configService, Converter<String, List<FlowRuleEntity>> converter) {
-        super(configService, converter);
+    public FlowRuleNacosProvider(ConfigService configService, Converter<String, List<FlowRuleEntity>> converter, NacosProperties nacosProperties) {
+        super(configService, converter, nacosProperties);
     }
 
     @Override

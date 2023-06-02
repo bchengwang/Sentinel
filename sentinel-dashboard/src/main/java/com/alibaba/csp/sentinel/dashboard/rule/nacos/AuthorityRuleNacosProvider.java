@@ -29,8 +29,8 @@ import java.util.List;
 @Component
 public class AuthorityRuleNacosProvider extends AbstractRuleNacosProvider<AuthorityRuleEntity> {
 
-    public AuthorityRuleNacosProvider(ConfigService configService, Converter<String, List<AuthorityRuleEntity>> converter) {
-        super(configService, converter);
+    public AuthorityRuleNacosProvider(ConfigService configService, Converter<String, List<AuthorityRuleEntity>> converter, NacosProperties nacosProperties) {
+        super(configService, converter, nacosProperties);
     }
 
     @Override

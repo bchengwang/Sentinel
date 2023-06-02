@@ -15,7 +15,7 @@
  */
 package com.alibaba.csp.sentinel.dashboard.rule.nacos;
 
-import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.SystemRuleEntity;
+import com.alibaba.csp.sentinel.dashboard.datasource.entity.gateway.ApiDefinitionEntity;
 import com.alibaba.csp.sentinel.datasource.Converter;
 import com.alibaba.nacos.api.config.ConfigService;
 import org.springframework.stereotype.Component;
@@ -27,14 +27,14 @@ import java.util.List;
  * @since 1.4.0
  */
 @Component
-public class SystemRuleNacosProvider extends AbstractRuleNacosProvider<SystemRuleEntity> {
+public class GwApiGroupRuleNacosProvider extends AbstractRuleNacosProvider<ApiDefinitionEntity> {
 
-    public SystemRuleNacosProvider(ConfigService configService, Converter<String, List<SystemRuleEntity>> converter, NacosProperties nacosProperties) {
+    public GwApiGroupRuleNacosProvider(ConfigService configService, Converter<String, List<ApiDefinitionEntity>> converter, NacosProperties nacosProperties) {
         super(configService, converter, nacosProperties);
     }
 
     @Override
     public String getDataIdPostfix() {
-        return NacosConfigUtil.SYSTEM_DATA_ID_POSTFIX;
+        return NacosConfigUtil.GW_API_GROUP_DATA_ID_POSTFIX;
     }
 }

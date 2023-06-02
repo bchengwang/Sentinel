@@ -31,7 +31,7 @@ import java.util.List;
 public  class AuthorityRuleNacosPublisher extends AbstractRuleNacosPublisher<AuthorityRuleEntity> {
 
     @Autowired
-    public AuthorityRuleNacosPublisher(ConfigService configService, Converter<List<AuthorityRuleEntity>, String> converter) {
+    public AuthorityRuleNacosPublisher(ConfigService configService, Converter<List<AuthorityRuleEntity>, String> converter ) {
         super(configService, converter);
     }
 

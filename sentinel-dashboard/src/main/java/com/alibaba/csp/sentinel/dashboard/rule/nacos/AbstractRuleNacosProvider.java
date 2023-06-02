@@ -36,15 +36,18 @@ public abstract class AbstractRuleNacosProvider<T> implements DynamicRuleProvide
 
     private final Converter<String, List<T>> converter;
 
+    private final NacosProperties nacosProperties;
+
     @Autowired
-    public AbstractRuleNacosProvider(ConfigService configService, Converter<String, List<T>> converter) {
+    public AbstractRuleNacosProvider(ConfigService configService, Converter<String, List<T>> converter, NacosProperties nacosProperties) {
         this.configService = configService;
         this.converter = converter;
+        this.nacosProperties = nacosProperties;
     }
 
     @Override
     public List<T> getRules(String appName) throws Exception {
-        String rules = configService.getConfig(appName + getDataIdPostfix(), NacosConfigUtil.GROUP_ID, 3000);
+        String rules = configService.getConfig(appName + getDataIdPostfix(), nacosProperties.getGroupId(), 3000);
         if (StringUtil.isEmpty(rules)) {
             return new ArrayList<>();
         }

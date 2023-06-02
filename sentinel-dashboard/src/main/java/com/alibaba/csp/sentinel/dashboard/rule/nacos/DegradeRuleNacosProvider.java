@@ -29,8 +29,8 @@ import java.util.List;
 @Component
 public class DegradeRuleNacosProvider extends AbstractRuleNacosProvider<DegradeRuleEntity> {
 
-    public DegradeRuleNacosProvider(ConfigService configService, Converter<String, List<DegradeRuleEntity>> converter) {
-        super(configService, converter);
+    public DegradeRuleNacosProvider(ConfigService configService, Converter<String, List<DegradeRuleEntity>> converter, NacosProperties nacosProperties) {
+        super(configService, converter, nacosProperties);
     }
 
     @Override

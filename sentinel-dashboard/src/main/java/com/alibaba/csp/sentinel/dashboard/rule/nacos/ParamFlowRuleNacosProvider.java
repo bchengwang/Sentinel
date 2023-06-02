@@ -29,8 +29,8 @@ import java.util.List;
 @Component
 public class ParamFlowRuleNacosProvider extends AbstractRuleNacosProvider<ParamFlowRuleEntity> {
 
-    public ParamFlowRuleNacosProvider(ConfigService configService, Converter<String, List<ParamFlowRuleEntity>> converter) {
-        super(configService, converter);
+    public ParamFlowRuleNacosProvider(ConfigService configService, Converter<String, List<ParamFlowRuleEntity>> converter, NacosProperties nacosProperties) {
+        super(configService, converter, nacosProperties);
     }
 
     @Override
