@@ -15,7 +15,6 @@
  */
 package com.alibaba.csp.sentinel.dashboard.rule.nacos;
 
-import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.FlowRuleEntity;
 import com.alibaba.csp.sentinel.dashboard.rule.DynamicRuleProvider;
 import com.alibaba.csp.sentinel.datasource.Converter;
 import com.alibaba.csp.sentinel.util.StringUtil;
@@ -27,23 +26,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Eric Zhao
- * @since 1.4.0
+ * @author 北橙
+ * @since 1.8.6
  */
-@Component("flowRuleNacosProvider")
-public class FlowRuleNacosProvider implements DynamicRuleProvider<List<FlowRuleEntity>> {
+@Component
+public abstract class AbstractRuleNacosProvider<T> implements DynamicRuleProvider<List<T>> {
+
+    private final ConfigService configService;
+
+    private final Converter<String, List<T>> converter;
 
     @Autowired
-    private ConfigService configService;
-    @Autowired
-    private Converter<String, List<FlowRuleEntity>> converter;
+    public AbstractRuleNacosProvider(ConfigService configService, Converter<String, List<T>> converter) {
+        this.configService = configService;
+        this.converter = converter;
+    }
 
     @Override
-    public List<FlowRuleEntity> getRules(String appName) throws Exception {
-        String rules = configService.getConfig(appName + NacosConfigUtil.FLOW_DATA_ID_POSTFIX, NacosConfigUtil.GROUP_ID, 3000);
+    public List<T> getRules(String appName) throws Exception {
+        String rules = configService.getConfig(appName + getDataIdPostfix(), NacosConfigUtil.GROUP_ID, 3000);
         if (StringUtil.isEmpty(rules)) {
             return new ArrayList<>();
         }
         return converter.convert(rules);
     }
+
+    public abstract String getDataIdPostfix();
 }
